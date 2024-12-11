@@ -37,6 +37,26 @@ public class Main {
             frame.setVisible(true);  // Делаем окно видимым
         });
     }
+
+    // Метод для тестирования производительности различных методов коллекций
+    public static void testPerformance(int size) {
+        // Создаем списки для тестирования
+        List<Integer> arrayList = new ArrayList<>();  // Инициализируем ArrayList
+        List<Integer> linkedList = new LinkedList<>();  // Инициализируем LinkedList
+        Random random = new Random();  // Создаем генератор случайных чисел
+
+        // Заполняем списки значениями от 0 до size-1
+        for (int j = 0; j < size; j++) {
+            arrayList.add(j);  // Добавляем значение в ArrayList
+            linkedList.add(j);  // Добавляем значение в LinkedList
+        }
+
+        // Тестируем методы и добавляем результаты в таблицу
+        addRowToTable("ADD", size, measureAddPerformance(new ArrayList<>(), size), measureAddPerformance(new LinkedList<>(), size));
+        addRowToTable("GET", size, measureGetPerformance(arrayList, size), measureGetPerformance(linkedList, size));
+        addRowToTable("Add_Middle", size, measureAddMiddlePerformance(arrayList, size, random), measureAddMiddlePerformance(linkedList, size, random));
+        addRowToTable("REMOVE", size, measureRemovePerformance(arrayList), measureRemovePerformance(linkedList));
+    }
   
     // Метод для добавления строки с результатами в таблицу
     private static void addRowToTable(String method, int size, long timeArrayList, long timeLinkedList) {
