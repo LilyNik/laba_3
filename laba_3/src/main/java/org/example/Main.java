@@ -75,6 +75,25 @@ public class Main {
         }
         return System.nanoTime() - startTime; // Возвращаем время выполнения в наносекундах
     }
+
+    // Метод для измерения времени выполнения добавления элемента в случайную позицию списка
+    private static long measureAddMiddlePerformance(List<Integer> list, int size, Random random) {
+        long startTime = System.nanoTime();  // Запоминаем текущее время в наносекундах
+        for (int j = 0; j < size; j++) {
+            int randomIndex = random.nextInt(list.size() + 1);  // Генерируем случайный индекс
+            list.add(randomIndex, j);  // Добавляем элемент j в случайное место
+        }
+        return System.nanoTime() - startTime; // Возвращаем время выполнения в наносекундах
+    }
+
+    // Метод для измерения времени выполнения удаления всех элементов из списка
+    private static long measureRemovePerformance(List<Integer> list) {
+        long startTime = System.nanoTime();  // Запоминаем текущее время в наносекундах
+        while (!list.isEmpty()) {
+            list.remove(0);  // Удаляем первый элемент списка
+        }
+        return System.nanoTime() - startTime; // Возвращаем время выполнения в наносекундах
+    }
   
     // Метод для добавления строки с результатами в таблицу
     private static void addRowToTable(String method, int size, long timeArrayList, long timeLinkedList) {
