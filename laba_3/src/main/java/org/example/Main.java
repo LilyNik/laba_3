@@ -57,6 +57,24 @@ public class Main {
         addRowToTable("Add_Middle", size, measureAddMiddlePerformance(arrayList, size, random), measureAddMiddlePerformance(linkedList, size, random));
         addRowToTable("REMOVE", size, measureRemovePerformance(arrayList), measureRemovePerformance(linkedList));
     }
+
+    // Метод для измерения времени выполнения добавления элементов в список
+    private static long measureAddPerformance(List<Integer> list, int size) {
+        long startTime = System.nanoTime();  // Запоминаем текущее время в наносекундах
+        for (int j = 0; j < size; j++) {
+            list.add(j);  // Добавляем элемент j в список
+        }
+        return System.nanoTime() - startTime; // Возвращаем время выполнения в наносекундах
+    }
+
+    // Метод для измерения времени выполнения получения элементов из списка
+    private static long measureGetPerformance(List<Integer> list, int size) {
+        long startTime = System.nanoTime();  // Запоминаем текущее время в наносекундах
+        for (int j = 0; j < size; j++) {
+            list.get(j);  // Получаем элемент по индексу j
+        }
+        return System.nanoTime() - startTime; // Возвращаем время выполнения в наносекундах
+    }
   
     // Метод для добавления строки с результатами в таблицу
     private static void addRowToTable(String method, int size, long timeArrayList, long timeLinkedList) {
